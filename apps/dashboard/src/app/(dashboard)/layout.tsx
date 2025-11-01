@@ -1,17 +1,12 @@
-import { auth } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
 import { Header } from "@/components/header";
 import { Sidebar } from "@/components/sidebar";
 
 export const dynamic = "force-dynamic";
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const { userId } = await auth();
-
-  if (!userId) {
-    redirect("/sign-in");
-  }
-
+  // Auth is handled by clerkMiddleware in proxy.ts
+  // Unauthenticated users are automatically redirected to Clerk Account Portal
+  
   return (
     <div className="flex h-screen">
       <Sidebar />

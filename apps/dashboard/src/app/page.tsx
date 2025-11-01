@@ -1,12 +1,7 @@
-import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 export default async function HomePage() {
-  const { userId } = await auth();
-
-  if (!userId) {
-    redirect("/sign-in");
-  }
-
+  // Auth is handled by clerkMiddleware in proxy.ts
+  // Redirect authenticated users to dashboard
   redirect("/dashboard");
 }
