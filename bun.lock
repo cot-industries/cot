@@ -43,8 +43,27 @@
         "typescript": "latest",
       },
     },
+    "apps/marketplace": {
+      "name": "@cot/marketplace",
+      "version": "0.1.0",
+      "dependencies": {
+        "lucide-react": "latest",
+        "next": "canary",
+        "react": "rc",
+        "react-dom": "rc",
+      },
+      "devDependencies": {
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "autoprefixer": "latest",
+        "postcss": "latest",
+        "tailwindcss": "latest",
+        "typescript": "latest",
+      },
+    },
     "apps/web": {
-      "name": "@cot/docs",
+      "name": "@cot/web",
       "version": "0.1.0",
       "dependencies": {
         "@mdx-js/loader": "latest",
@@ -142,11 +161,13 @@
 
     "@cot/db": ["@cot/db@workspace:packages/db"],
 
-    "@cot/docs": ["@cot/docs@workspace:apps/web"],
-
     "@cot/engine": ["@cot/engine@workspace:packages/engine"],
 
+    "@cot/marketplace": ["@cot/marketplace@workspace:apps/marketplace"],
+
     "@cot/schema": ["@cot/schema@workspace:packages/schema"],
+
+    "@cot/web": ["@cot/web@workspace:apps/web"],
 
     "@cspotcode/source-map-support": ["@cspotcode/source-map-support@0.8.1", "", { "dependencies": { "@jridgewell/trace-mapping": "0.3.9" } }, "sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw=="],
 
