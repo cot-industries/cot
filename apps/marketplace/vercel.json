@@ -1,0 +1,10 @@
+{
+  "buildCommand": "cd ../.. && bun run build --filter=@cot/marketplace",
+  "framework": "nextjs",
+  "installCommand": "bun install",
+  "git": {
+    "deploymentEnabled": {
+      "main": true
+    }
+  }
+}
