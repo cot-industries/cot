@@ -1,0 +1,11 @@
+# Bun configuration for Cot monorepo
+
+[install]
+# Enable peer dependency auto-install
+peer = true
+
+# Faster installs
+cache = true
+
+[install.scopes]
+# Add any scoped registries here if needed

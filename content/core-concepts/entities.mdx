@@ -1,0 +1,83 @@
+# Entities
+
+Entities are the building blocks of your ERP. They represent business objects like customers, products, invoices, or anything specific to your domain.
+
+## What is an entity?
+
+An entity is a structured data model with:
+- **Name**: Unique identifier (e.g., "customer")
+- **Fields**: Properties that define the data structure
+- **Metadata**: Labels, descriptions, icons
+
+## Field types
+
+Cot supports rich field types:
+
+### Primitives
+- `text` - String values
+- `number` - Numeric values
+- `boolean` - True/false
+- `date` - Date only
+- `datetime` - Date and time
+
+### Rich types
+- `email` - Email with validation
+- `url` - URL with validation
+- `phone` - Phone number
+- `currency` - Monetary values
+
+### Relations
+- `relation` - Link to another entity
+
+### Advanced
+- `select` - Dropdown with options
+- `json` - Arbitrary JSON data
+- `computed` - Calculated fields
+
+## Example: Project entity
+
+\`\`\`typescript
+const project = await cot.entities.create({
+  name: "project",
+  label: "Project",
+  pluralLabel: "Projects",
+  description: "Building projects for construction management",
+  fields: [
+    {
+      name: "title",
+      type: "text",
+      required: true,
+      label: "Project Title",
+    },
+    {
+      name: "budget",
+      type: "currency",
+      currency: "USD",
+      label: "Budget",
+    },
+    {
+      name: "start_date",
+      type: "date",
+      label: "Start Date",
+    },
+    {
+      name: "status",
+      type: "select",
+      options: [
+        { label: "Planning", value: "planning" },
+        { label: "Active", value: "active" },
+        { label: "Complete", value: "complete" },
+      ],
+    },
+  ],
+});
+\`\`\`
+
+This creates a complete data model with validation, API endpoints, and UI.
+
+## Best practices
+
+- Use lowercase with underscores for entity names
+- Keep entities focused (single responsibility)
+- Define required fields carefully
+- Use descriptive labels for the UI

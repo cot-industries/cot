@@ -1,0 +1,62 @@
+# Quickstart
+
+Get started with Cot in 5 minutes.
+
+## What is Cot?
+
+Cot is an API-first platform for building custom ERP systems. Think of it as a foundation that lets you define your business objects (entities), and automatically generates:
+
+- REST APIs
+- Database schemas
+- Admin UI
+- Type-safe SDKs
+
+## Create your first entity
+
+Define a "customer" entity with just a few fields:
+
+\`\`\`typescript
+const customer = await cot.entities.create({
+  name: "customer",
+  label: "Customer",
+  fields: [
+    { name: "name", type: "text", required: true },
+    { name: "email", type: "email", required: true, unique: true },
+    { name: "phone", type: "phone" },
+  ],
+});
+\`\`\`
+
+That's it! Cot automatically:
+- Creates a Postgres table for storing customers
+- Generates REST endpoints at `/v1/data/customer`
+- Provides a type-safe SDK
+- Creates admin UI forms
+
+## Use the API
+
+Create a customer via the API:
+
+\`\`\`bash
+curl https://api.cot.dev/v1/data/customer \\
+  -H "Authorization: Bearer YOUR_API_KEY" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "name": "John Doe",
+    "email": "john@example.com",
+    "phone": "+1234567890"
+  }'
+\`\`\`
+
+Query customers:
+
+\`\`\`bash
+curl https://api.cot.dev/v1/data/customer \\
+  -H "Authorization: Bearer YOUR_API_KEY"
+\`\`\`
+
+## Next steps
+
+- [Define relationships](/core-concepts/relationships) between entities
+- [Build a CRM](/guides/build-a-crm) in 30 minutes
+- [Explore the API](/api-reference) reference
