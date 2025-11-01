@@ -98,16 +98,24 @@ Cot Agent: "Created entities: Property, Client, Inspection, Offer
 ```
 cot/
 ├── apps/
-│   ├── dashboard/     # Developer dashboard
-│   └── docs/          # Documentation site
+│   ├── web/           # Marketing site (cot.industries)
+│   ├── dashboard/     # Platform dashboard (cot.dev)
+│   └── marketplace/   # Module registry (cot.land) - Phase 3
 ├── packages/
-│   ├── api/          # Core API service
-│   ├── engine/       # Entity engine, workflow engine
+│   ├── engine/       # Entity engine, schema generator
 │   ├── schema/       # Shared types, Zod schemas
-│   ├── db/           # Database layer
-│   └── ui/           # UI components
-└── examples/         # Example implementations
+│   ├── db/           # Database layer (Drizzle ORM)
+│   └── ui/           # UI components (future)
+└── docs/             # Internal documentation
 ```
+
+### Domain Architecture
+
+| Domain | App | Purpose |
+|--------|-----|---------|
+| **cot.industries** | `apps/web` | Marketing, docs, blog |
+| **cot.dev** | `apps/dashboard` | Platform, user data |
+| **cot.land** | `apps/marketplace` | Module registry (Phase 3) |
 
 ## Development
 
