@@ -36,7 +36,7 @@ export default function NewEntityPage() {
       });
 
       if (!result.success) {
-        setError(result.error);
+        setError(result.error ?? "Failed to create entity");
         setIsSubmitting(false);
         return;
       }

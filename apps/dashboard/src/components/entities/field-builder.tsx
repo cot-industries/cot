@@ -21,14 +21,18 @@ const FIELD_TYPES: { value: FieldType; label: string }[] = [
   { value: "boolean", label: "Boolean" },
   { value: "date", label: "Date" },
   { value: "datetime", label: "Date & Time" },
+  { value: "time", label: "Time" },
   { value: "email", label: "Email" },
   { value: "url", label: "URL" },
   { value: "phone", label: "Phone" },
   { value: "currency", label: "Currency" },
   { value: "select", label: "Select (Dropdown)" },
+  { value: "multiselect", label: "Multi-Select" },
   { value: "json", label: "JSON" },
+  { value: "relation", label: "Relation" },
   { value: "file", label: "File" },
   { value: "image", label: "Image" },
+  { value: "computed", label: "Computed" },
 ];
 
 interface FieldBuilderProps {
@@ -55,7 +59,7 @@ export function FieldBuilder({ fields, onChange }: FieldBuilderProps) {
 
   const updateField = (index: number, updates: Partial<Field>) => {
     const newFields = [...fields];
-    newFields[index] = { ...newFields[index], ...updates };
+    newFields[index] = { ...newFields[index], ...updates } as Partial<Field>;
     onChange(newFields);
   };
 
@@ -138,7 +142,7 @@ export function FieldBuilder({ fields, onChange }: FieldBuilderProps) {
                     </Label>
                     <Select
                       value={field.type}
-                      onValueChange={(value) => updateField(index, { type: value as FieldType })}
+                      onValueChange={(value) => updateField(index, { type: value as any })}
                     >
                       <SelectTrigger id={`field-type-${index}`}>
                         <SelectValue />

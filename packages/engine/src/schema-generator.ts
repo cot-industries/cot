@@ -65,7 +65,7 @@ export class SchemaGenerator {
     const nullable = field.required ? "NOT NULL" : "NULL";
 
     let pgType: string;
-    switch (field.type) {
+    switch (field.type as any) {
       case "text":
       case "email":
       case "url":

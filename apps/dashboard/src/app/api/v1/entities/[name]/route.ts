@@ -6,10 +6,10 @@ import { validateApiKey } from "@/lib/api-auth";
  * GET /api/v1/entities/:name
  * Get a specific entity by name
  */
-export async function GET(req: NextRequest, { params }: { params: { name: string } }) {
+export async function GET(req: NextRequest, { params }: { params: Promise<{ name: string }> }) {
   try {
     const { tenantId } = await validateApiKey(req);
-    const entityName = params.name;
+    const { name: entityName } = await params;
 
     const engine = new EntityEngine();
     const entity = await engine.getEntity(tenantId, entityName);
@@ -36,10 +36,10 @@ export async function GET(req: NextRequest, { params }: { params: { name: string
  * DELETE /api/v1/entities/:name
  * Delete an entity
  */
-export async function DELETE(req: NextRequest, { params }: { params: { name: string } }) {
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ name: string }> }) {
   try {
     const { tenantId } = await validateApiKey(req);
-    const entityName = params.name;
+    const { name: entityName } = await params;
 
     const engine = new EntityEngine();
     await engine.deleteEntity(tenantId, entityName);

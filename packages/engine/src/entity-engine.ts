@@ -75,7 +75,14 @@ export class EntityEngine {
 
     // 5. Generate Postgres table using SchemaGenerator
     const fullEntity: EntityDefinition = {
-      ...entity,
+      name: entity.name,
+      label: entity.label,
+      pluralLabel: entity.pluralLabel ?? undefined,
+      description: entity.description ?? undefined,
+      icon: entity.icon ?? undefined,
+      timestamps: entity.timestamps,
+      softDelete: entity.softDelete,
+      tenantId,
       fields: validated.fields,
     };
 
@@ -93,7 +100,7 @@ export class EntityEngine {
       where: and(eq(entities.tenantId, tenantId), eq(entities.name, entityName)),
       with: {
         fields: {
-          orderBy: (fields, { asc }) => [asc(fields.order)],
+          orderBy: (fields: any, { asc }: any) => [asc(fields.order)],
         },
       },
     });
@@ -110,7 +117,7 @@ export class EntityEngine {
       pluralLabel: entity.pluralLabel ?? undefined,
       description: entity.description ?? undefined,
       icon: entity.icon ?? undefined,
-      fields: entity.fields.map((f) => f.config as any), // JSONB contains full field config
+      fields: (entity as any).fields.map((f: any) => f.config as any), // JSONB contains full field config
       timestamps: entity.timestamps,
       softDelete: entity.softDelete,
       tenantId: entity.tenantId,
@@ -127,20 +134,20 @@ export class EntityEngine {
       where: eq(entities.tenantId, tenantId),
       with: {
         fields: {
-          orderBy: (fields, { asc }) => [asc(fields.order)],
+          orderBy: (fields: any, { asc }: any) => [asc(fields.order)],
         },
       },
-      orderBy: (entities, { desc }) => [desc(entities.createdAt)],
+      orderBy: (entities: any, { desc }: any) => [desc(entities.createdAt)],
     });
 
-    return entityRecords.map((entity) => ({
+    return entityRecords.map((entity: any) => ({
       id: entity.id,
       name: entity.name,
       label: entity.label,
       pluralLabel: entity.pluralLabel ?? undefined,
       description: entity.description ?? undefined,
       icon: entity.icon ?? undefined,
-      fields: entity.fields.map((f) => f.config as any),
+      fields: entity.fields.map((f: any) => f.config as any),
       timestamps: entity.timestamps,
       softDelete: entity.softDelete,
       tenantId: entity.tenantId,
@@ -177,6 +184,6 @@ export class EntityEngine {
     await this.schemaGenerator.dropTable(tenantId, entityName);
 
     // Delete from meta-tables (cascade will delete fields)
-    await this.db.delete(entities).where(eq(entities.id, entity.id));
+    await this.db.delete(entities).where(eq(entities.id, entity.id!));
   }
 }
