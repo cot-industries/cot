@@ -1,0 +1,10 @@
+{
+  "buildCommand": "cd ../.. && bun run build --filter=@cot/dashboard",
+  "framework": "nextjs",
+  "installCommand": "bun install",
+  "git": {
+    "deploymentEnabled": {
+      "main": true
+    }
+  }
+}
