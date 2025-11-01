@@ -43,7 +43,7 @@
         "typescript": "latest",
       },
     },
-    "apps/docs": {
+    "apps/web": {
       "name": "@cot/docs",
       "version": "0.1.0",
       "dependencies": {
@@ -142,7 +142,7 @@
 
     "@cot/db": ["@cot/db@workspace:packages/db"],
 
-    "@cot/docs": ["@cot/docs@workspace:apps/docs"],
+    "@cot/docs": ["@cot/docs@workspace:apps/web"],
 
     "@cot/engine": ["@cot/engine@workspace:packages/engine"],
 

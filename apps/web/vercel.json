@@ -1,5 +1,5 @@
 {
-  "buildCommand": "cd ../.. && bun run build --filter=@cot/docs",
+  "buildCommand": "cd ../.. && bun run build --filter=@cot/web",
   "framework": "nextjs",
   "installCommand": "bun install",
   "git": {
