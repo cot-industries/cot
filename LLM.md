@@ -238,6 +238,48 @@ await db.execute(sql.raw(`CREATE TABLE ...`));
 
 ---
 
+## Shared Packages
+
+### @cot/ui ✨ (NEW - Shared UI Library)
+**All 3 apps use this for consistent UI**
+
+**Exports:**
+- shadcn components: `Button`, `Input`, `Select`, `Sidebar`, `Sheet`, `Avatar`, `Dropdown`, etc.
+- Theme: `ThemeProvider`, `ThemeToggle`
+- Utils: `cn()`, `useIsMobile()`
+
+**Usage:**
+```tsx
+import { Button, Sidebar, ThemeProvider } from "@cot/ui"
+```
+
+**Location:** `packages/ui/src/` (all Tailwind v4 syntax)
+
+### @cot/db
+**Database + Drizzle ORM helpers**
+- `db` - Neon client
+- Tables: `entities`, `fields`, `tenants`, `relationships`  
+- **ORM helpers:** `eq`, `and`, `or`, `sql`, `desc`, `asc`
+
+**CRITICAL:** Import helpers from `@cot/db`, NOT `drizzle-orm`:
+```tsx
+// ✅ CORRECT
+import { db, eq, and } from "@cot/db"
+
+// ❌ WRONG (version conflicts)
+import { eq } from "drizzle-orm"
+```
+
+### @cot/schema
+- Zod schemas + types
+- `EntityDefinition`, `CreateEntityInput`, `FieldType`
+
+### @cot/engine  
+- `EntityEngine` - Entity CRUD
+- `SchemaGenerator` - DDL generation
+
+---
+
 ## Conventions
 
 ### Naming
@@ -256,17 +298,13 @@ await db.execute(sql.raw(`CREATE TABLE ...`));
 ### Imports
 ```typescript
 // Shared packages
+import { Button, Sidebar, ThemeProvider } from "@cot/ui";
 import { EntityDefinition } from "@cot/schema";
-import { db } from "@cot/db";
+import { db, eq, and } from "@cot/db";
 import { EntityEngine } from "@cot/engine";
 
-// shadcn/ui components
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-
-// Internal components
-import { Sidebar } from "@/components/sidebar";
+// Internal app-specific components
+import { AppSidebar } from "@/components/app-sidebar";
 ```
 
 ---
