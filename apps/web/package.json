@@ -9,6 +9,7 @@
     "lint": "biome check ."
   },
   "dependencies": {
+    "@cot/ui": "workspace:*",
     "@mdx-js/loader": "latest",
     "@mdx-js/react": "latest",
     "@next/mdx": "latest",
@@ -16,9 +17,11 @@
     "next": "canary",
     "react": "rc",
     "react-dom": "rc",
-    "lucide-react": "latest"
+    "lucide-react": "latest",
+    "next-themes": "latest"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",

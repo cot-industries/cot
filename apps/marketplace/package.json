@@ -9,12 +9,15 @@
     "lint": "biome check ."
   },
   "dependencies": {
+    "@cot/ui": "workspace:*",
     "lucide-react": "latest",
     "next": "canary",
     "react": "rc",
-    "react-dom": "rc"
+    "react-dom": "rc",
+    "next-themes": "latest"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",

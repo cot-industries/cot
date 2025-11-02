@@ -21,6 +21,7 @@
         "@cot/db": "workspace:*",
         "@cot/engine": "workspace:*",
         "@cot/schema": "workspace:*",
+        "@cot/ui": "workspace:*",
         "@radix-ui/react-avatar": "^1.1.10",
         "@radix-ui/react-dialog": "^1.1.15",
         "@radix-ui/react-dropdown-menu": "^2.1.16",
@@ -56,12 +57,15 @@
       "name": "@cot/marketplace",
       "version": "0.1.0",
       "dependencies": {
+        "@cot/ui": "workspace:*",
         "lucide-react": "latest",
         "next": "canary",
+        "next-themes": "latest",
         "react": "rc",
         "react-dom": "rc",
       },
       "devDependencies": {
+        "@tailwindcss/postcss": "latest",
         "@types/node": "latest",
         "@types/react": "latest",
         "@types/react-dom": "latest",
@@ -75,16 +79,19 @@
       "name": "@cot/web",
       "version": "0.1.0",
       "dependencies": {
+        "@cot/ui": "workspace:*",
         "@mdx-js/loader": "latest",
         "@mdx-js/react": "latest",
         "@next/mdx": "latest",
         "@types/mdx": "latest",
         "lucide-react": "latest",
         "next": "canary",
+        "next-themes": "latest",
         "react": "rc",
         "react-dom": "rc",
       },
       "devDependencies": {
+        "@tailwindcss/postcss": "latest",
         "@types/node": "latest",
         "@types/react": "latest",
         "@types/react-dom": "latest",
@@ -134,6 +141,34 @@
         "typescript": "latest",
       },
     },
+    "packages/ui": {
+      "name": "@cot/ui",
+      "version": "0.0.0",
+      "dependencies": {
+        "@radix-ui/react-avatar": "latest",
+        "@radix-ui/react-dialog": "latest",
+        "@radix-ui/react-dropdown-menu": "latest",
+        "@radix-ui/react-select": "latest",
+        "@radix-ui/react-separator": "latest",
+        "@radix-ui/react-slot": "latest",
+        "@radix-ui/react-tooltip": "latest",
+        "class-variance-authority": "latest",
+        "clsx": "latest",
+        "lucide-react": "latest",
+        "next-themes": "latest",
+        "tailwind-merge": "latest",
+      },
+      "devDependencies": {
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "react": "rc",
+        "typescript": "latest",
+      },
+      "peerDependencies": {
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+      },
+    },
   },
   "packages": {
     "@alloc/quick-lru": ["@alloc/quick-lru@5.2.0", "", {}, "sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw=="],
@@ -177,6 +212,8 @@
     "@cot/marketplace": ["@cot/marketplace@workspace:apps/marketplace"],
 
     "@cot/schema": ["@cot/schema@workspace:packages/schema"],
+
+    "@cot/ui": ["@cot/ui@workspace:packages/ui"],
 
     "@cot/web": ["@cot/web@workspace:apps/web"],
 

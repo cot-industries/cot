@@ -1,5 +1,4 @@
-import { type Database, db } from "@cot/db";
-import { sql } from "drizzle-orm";
+import { type Database, db, sql } from "@cot/db";
 import type { EntityDefinition, Field } from "@cot/schema";
 
 /**
