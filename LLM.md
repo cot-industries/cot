@@ -238,6 +238,67 @@ await db.execute(sql.raw(`CREATE TABLE ...`));
 
 ---
 
+## Data Operations (CRITICAL for Building)
+
+**Server Actions** (Use in Client Components):
+```tsx
+import { createRecord, updateRecord, deleteRecord } from "@/app/actions/data"
+
+// Create
+const result = await createRecord("customers", { name: "Acme", email: "hi@acme.com" })
+
+// Update
+const result = await updateRecord("customers", id, { name: "Acme Corp" })
+
+// Delete
+const result = await deleteRecord("customers", id)
+```
+
+**DataEngine** (Use in Server Components/API):
+```tsx
+import { DataEngine } from "@cot/engine"
+
+const engine = new DataEngine()
+
+// Create
+await engine.create(tenantId, entity, data)
+
+// Find many (with pagination, filtering)
+await engine.findMany(tenantId, entity, { limit: 100, where: { status: "active" } })
+
+// Find one
+await engine.findOne(tenantId, entity, id)
+
+// Update
+await engine.update(tenantId, entity, id, data)
+
+// Delete
+await engine.delete(tenantId, entity, id)
+
+// Count
+await engine.count(tenantId, entity, { status: "active" })
+```
+
+**REST API** (External Access):
+```bash
+# Create record
+POST /api/v1/data/customers
+Headers: Authorization: Bearer sk_xxx
+Body: { "name": "Acme", "email": "hi@acme.com" }
+
+# List records
+GET /api/v1/data/customers?limit=100&offset=0
+
+# Get record
+GET /api/v1/data/customers/:id
+
+# Update record
+PATCH /api/v1/data/customers/:id
+
+# Delete record
+DELETE /api/v1/data/customers/:id
+```
+
 ## Shared Packages
 
 ### @cot/ui ✨ (NEW - Shared UI Library)
