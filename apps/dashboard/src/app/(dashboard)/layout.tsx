@@ -15,7 +15,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
         <TopNavbar />
         
         {/* Page content */}
-        <main className="flex-1 overflow-y-auto bg-muted/10 p-6">
+        <main className="flex-1 overflow-y-auto p-8 md:p-10">
           {children}
         </main>
       </div>

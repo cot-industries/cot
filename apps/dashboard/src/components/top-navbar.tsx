@@ -7,7 +7,7 @@ import { Separator } from "@/components/ui/separator"
 
 export function TopNavbar() {
   return (
-    <div className="flex h-16 items-center gap-4 border-b px-6 bg-background">
+    <div className="flex h-16 items-center gap-4 px-6 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       {/* Workspace/Project Selector */}
       <Select defaultValue="default">
         <SelectTrigger className="w-[200px]">

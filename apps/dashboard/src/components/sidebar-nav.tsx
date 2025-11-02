@@ -21,18 +21,19 @@ export function SidebarNav() {
   return (
     <div
       className={cn(
-        "relative flex flex-col border-r bg-background transition-all duration-300",
+        "relative flex flex-col transition-all duration-300",
         collapsed ? "w-16" : "w-64"
       )}
+      style={{ backgroundColor: 'hsl(var(--sidebar-background))' }}
     >
       {/* Logo */}
-      <div className="flex h-16 items-center justify-between px-4 border-b">
-        {!collapsed && <span className="text-xl font-bold">Cot</span>}
+      <div className="flex h-16 items-center justify-between px-4">
+        {!collapsed && <span className="text-lg font-semibold">Cot</span>}
         <Button
           variant="ghost"
           size="icon"
           onClick={() => setCollapsed(!collapsed)}
-          className={cn("ml-auto", collapsed && "mx-auto")}
+          className={cn("ml-auto h-8 w-8", collapsed && "mx-auto")}
         >
           {collapsed ? (
             <ChevronRight className="h-4 w-4" />
@@ -43,19 +44,20 @@ export function SidebarNav() {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 space-y-1 p-2">
+      <nav className="flex-1 space-y-1 px-3 py-2">
         {navigation.map((item) => {
           const isActive = pathname?.startsWith(item.href)
           return (
             <Link key={item.href} href={item.href}>
               <Button
                 variant={isActive ? "secondary" : "ghost"}
+                size="sm"
                 className={cn(
                   "w-full justify-start",
                   collapsed && "justify-center px-2"
                 )}
               >
-                <item.icon className={cn("h-4 w-4", !collapsed && "mr-2")} />
+                <item.icon className={cn("h-4 w-4", !collapsed && "mr-3")} />
                 {!collapsed && <span>{item.name}</span>}
               </Button>
             </Link>
@@ -64,9 +66,9 @@ export function SidebarNav() {
       </nav>
 
       {/* Footer */}
-      <div className="p-2 border-t">
+      <div className="px-3 py-2">
         <div className={cn("text-xs text-muted-foreground", collapsed && "text-center")}>
-          {collapsed ? "v1" : "Version 1.0.0"}
+          {collapsed ? "v1" : "v1.0.0"}
         </div>
       </div>
     </div>
