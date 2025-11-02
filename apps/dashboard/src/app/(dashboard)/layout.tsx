@@ -6,16 +6,16 @@ export const dynamic = "force-dynamic";
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
-    <SidebarProvider>
-      <AppSidebar collapsible="icon" />
+    <SidebarProvider defaultOpen={true}>
+      <AppSidebar variant="inset" />
       <SidebarInset>
         {/* Top navbar */}
         <TopNavbar />
         
         {/* Page content */}
-        <div className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
+        <main className="flex flex-1 flex-col gap-4 p-4 pt-0">
           {children}
-        </div>
+        </main>
       </SidebarInset>
     </SidebarProvider>
   );
