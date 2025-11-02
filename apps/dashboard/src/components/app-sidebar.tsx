@@ -7,6 +7,7 @@ import {
   LayoutDashboard,
   Box,
   Settings,
+  Sparkles,
 } from "lucide-react"
 
 import {
@@ -29,6 +30,11 @@ const data = {
       title: "Home",
       url: "/home",
       icon: LayoutDashboard,
+    },
+    {
+      title: "AI Generator",
+      url: "/ai",
+      icon: Sparkles,
     },
     {
       title: "Entities",
