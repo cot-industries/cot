@@ -7,7 +7,6 @@ import {
   LayoutDashboard,
   Box,
   Settings,
-  ChevronRight,
 } from "lucide-react"
 
 import {
@@ -27,8 +26,8 @@ import {
 const data = {
   navMain: [
     {
-      title: "Dashboard",
-      url: "/dashboard",
+      title: "Home",
+      url: "/home",
       icon: LayoutDashboard,
     },
     {
@@ -53,7 +52,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <Link href="/dashboard">
+              <Link href="/home">
                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                   <span className="font-semibold">C</span>
                 </div>
@@ -86,16 +85,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild size="sm">
-              <a href="https://ui.shadcn.com/docs" target="_blank" rel="noreferrer">
-                <span>Documentation</span>
-                <ChevronRight className="ml-auto" />
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
+        <div className="p-2 text-xs text-muted-foreground">
+          ? 2025 Cot Industries
+        </div>
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

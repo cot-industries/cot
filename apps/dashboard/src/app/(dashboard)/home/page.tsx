@@ -1,4 +1,4 @@
-export default function DashboardPage() {
+export default function HomePage() {
   return (
     <div>
       <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
