@@ -1,7 +1,5 @@
 import { auth } from "@clerk/nextjs/server";
-import { db } from "@cot/db";
-import { tenants } from "@cot/db";
-import { eq } from "drizzle-orm";
+import { db, tenants, eq } from "@cot/db";
 
 /**
  * Get or create tenant for current Clerk organization

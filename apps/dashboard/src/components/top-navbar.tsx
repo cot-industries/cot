@@ -4,13 +4,18 @@ import { UserButton } from "@clerk/nextjs"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Separator } from "@/components/ui/separator"
+import { SidebarTrigger } from "@/components/ui/sidebar"
 
 export function TopNavbar() {
   return (
-    <div className="flex h-16 items-center gap-4 px-6 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
+      {/* Mobile menu trigger */}
+      <SidebarTrigger className="-ml-1" />
+      <Separator orientation="vertical" className="mr-2 h-4" />
+      
       {/* Workspace/Project Selector */}
       <Select defaultValue="default">
-        <SelectTrigger className="w-[200px]">
+        <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Select workspace" />
         </SelectTrigger>
         <SelectContent>
@@ -25,16 +30,16 @@ export function TopNavbar() {
       {/* Right side actions */}
       <div className="flex items-center gap-2">
         <ThemeToggle />
-        <Separator orientation="vertical" className="h-6" />
+        <Separator orientation="vertical" className="h-4" />
         <UserButton 
           afterSignOutUrl="/"
           appearance={{
             elements: {
-              avatarBox: "h-9 w-9"
+              avatarBox: "h-8 w-8"
             }
           }}
         />
       </div>
-    </div>
+    </header>
   )
 }

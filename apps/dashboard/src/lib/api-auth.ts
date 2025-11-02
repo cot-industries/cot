@@ -1,6 +1,4 @@
-import { db } from "@cot/db";
-import { apiKeys } from "@cot/db";
-import { eq } from "drizzle-orm";
+import { db, apiKeys, eq } from "@cot/db";
 import type { NextRequest } from "next/server";
 
 /**
