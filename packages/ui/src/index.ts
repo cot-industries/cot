@@ -9,7 +9,6 @@ export * from "./components/tooltip"
 export * from "./components/avatar"
 export * from "./components/dropdown-menu"
 export * from "./components/sheet"
-export * from "./components/toggle"
 export * from "./components/theme-provider"
 export * from "./components/theme-toggle"
 
