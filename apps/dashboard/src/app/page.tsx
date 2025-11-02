@@ -1,7 +1,13 @@
+import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 export default async function RootPage() {
-  // Auth is handled by clerkMiddleware in proxy.ts
-  // Redirect authenticated users to home
-  redirect("/home");
+  const { userId } = await auth();
+  
+  // Redirect based on auth status
+  if (userId) {
+    redirect("/home");
+  } else {
+    redirect("/sign-in");
+  }
 }
