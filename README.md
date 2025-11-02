@@ -1,192 +1,245 @@
-# Cot - AI-First Business Software Platform
+# Cot - AI-First Custom ERP Platform
 
-**Infrastructure for AI agents building software**
+**Build custom ERPs in minutes, not months.**
 
-[![License](https://img.shields.io/badge/license-BSL%201.1-blue.svg)](LICENSE)
-[![Next.js](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org)
-[![React](https://img.shields.io/badge/React-19-blue)](https://react.dev)
+Cot is an API-first, AI-first platform where developers define entities (like "customers" or "invoices") using natural language, and the platform auto-generates:
 
----
+- ✅ **Postgres tables** (via Drizzle ORM)
+- ✅ **REST APIs** (with API key authentication)
+- ✅ **Admin UI** (CRUD operations with beautiful forms)
+- ✅ **Type-safe schemas** (Zod validation)
 
-## What Is Cot?
+## 🎯 Vision
 
-**Cot is the platform AI agents use to build and deploy business software.**
+A meta-layer for building ERPs dynamically. Instead of building a static ERP, **Cot lets you describe what you need and generates it instantly.**
 
-Define entities (like "customer" or "invoice"), and Cot automatically generates:
-- ✅ Postgres database tables
-- ✅ REST API endpoints (CRUD)
-- ✅ Type-safe SDK
-- ✅ Admin dashboard UI
-- ✅ Data validation & relationships
+```
+User: "Create a customers module with name, email, phone, and company"
 
-**Think:**
-- **Stripe** for payments
-- **Neon** for databases  
-- **Clerk** for auth
-- **Cot** for business operations
+AI: ✨ Generates complete entity definition
 
----
-
-## Quick Example
-
-### Using the API
-```typescript
-// Create entity
-const response = await fetch("https://api.cot.dev/v1/entities", {
-  method: "POST",
-  headers: {
-    "Authorization": "Bearer cot_live_...",
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    name: "customer",
-    label: "Customer",
-    fields: [
-      { name: "email", type: "email", required: true },
-      { name: "full_name", type: "text", required: true },
-      { name: "phone", type: "phone" }
-    ]
-  })
-});
-
-// Postgres table created, API endpoints generated automatically
+Result: 
+- Postgres table created
+- REST API endpoints live
+- Beautiful CRUD UI ready
+- Type-safe TypeScript types
 ```
 
-### Using the Dashboard
-1. Sign in at [cot.dev](https://cot.dev)
-2. Click "Create Entity"
-3. Define your data structure
-4. Submit → Table + API created instantly
+## 🚀 Current Status
 
-### Using AI Agents (Coming Soon)
-```
-You: "Build me a CRM for real estate agents"
+**Phase 1: ✅ COMPLETE**
+- Entity definitions
+- Schema generation
+- Full CRUD operations (DataEngine)
+- REST API with authentication
+- Dynamic forms
+- Entity browser UI
 
-Cot Agent: "Created entities: Property, Client, Inspection, Offer
-            Generated APIs, database schema, and dashboard.
-            Preview ready at cot.dev/preview/abc123"
-```
+**Phase 2: ✅ COMPLETE**
+- **AI Entity Generator** - Natural language to full entity
+- OpenAI GPT-4 integration
+- Real-time preview
+- One-click deployment
 
----
+**Phase 3: 🚧 In Progress**
+- Demo app (cot.ac)
+- Entity relationships
+- Marketplace for modules
 
-## Why Cot?
+## 🏗️ Architecture
 
-### For Developers
-- **Ship 10x faster** - No boilerplate, instant APIs
-- **Type-safe** - Full TypeScript, Zod validation
-- **Modern stack** - Next.js 16, React 19, Postgres
-- **Vercel-native** - Deploy to edge instantly
-
-### For AI Agents
-- **API-first design** - Everything programmable
-- **Predictable** - Validation catches LLM mistakes
-- **Idempotent** - Safe to retry operations
-- **Well-documented** - Clear schema for generation
-
-### vs Competitors
-- **vs Notion/Airtable:** Developer infrastructure, not end-user software
-- **vs Supabase:** Business logic layer, not just database
-- **vs No-code:** Full code access when you need it
-- **vs Building custom:** 100x faster, maintained for you
-
----
-
-> **Note:** Cot is licensed under the Business Source License 1.1. Free for development and internal use. Converts to Apache 2.0 in 2029. See [LICENSE](LICENSE) for details.
-
-## Structure
+### Monorepo Structure
 
 ```
 cot/
 ├── apps/
+│   ├── dashboard/      # Developer dashboard (cot.dev)
 │   ├── web/           # Marketing site (cot.industries)
-│   ├── dashboard/     # Platform dashboard (cot.dev)
-│   └── marketplace/   # Module registry (cot.land) - Phase 3
+│   ├── marketplace/   # Module marketplace (cot.land)
+│   └── demo/          # Demo instance (cot.ac)
 ├── packages/
-│   ├── engine/       # Entity engine, schema generator
-│   ├── schema/       # Shared types, Zod schemas
-│   ├── db/           # Database layer (Drizzle ORM)
-│   └── ui/           # UI components (future)
-└── docs/             # Internal documentation
+│   ├── db/            # Database client + schema
+│   ├── engine/        # Core business logic
+│   ├── schema/        # Zod schemas + types
+│   └── ui/            # Shared UI components
 ```
 
-### Domain Architecture
+### Tech Stack
 
-| Domain | App | Purpose |
-|--------|-----|---------|
-| **cot.industries** | `apps/web` | Marketing, docs, blog |
-| **cot.dev** | `apps/dashboard` | Platform, user data |
-| **cot.land** | `apps/marketplace` | Module registry (Phase 3) |
+- **Runtime:** Bun 1.3.1
+- **Framework:** Next.js 16 (canary), React 19 RC
+- **Database:** Neon Postgres (serverless)
+- **ORM:** Drizzle ORM
+- **Auth:** Clerk (Account Portal mode)
+- **AI:** OpenAI GPT-4o-mini
+- **Styling:** Tailwind CSS v4, shadcn/ui (v4 syntax)
+- **Validation:** Zod
+- **Monorepo:** Turborepo
 
-## Development
+## 💻 Quick Start
+
+### Prerequisites
+
+- Bun 1.3.1+
+- Neon Postgres database
+- Clerk account
+- OpenAI API key
+
+### Installation
 
 ```bash
+# Clone repo
+git clone https://github.com/cot-industries/cot.git
+cd cot
+
+# Install dependencies
 bun install
+
+# Set up environment variables
+cp apps/dashboard/.env.example apps/dashboard/.env.local
+
+# Required environment variables:
+# - DATABASE_URL (Neon connection string)
+# - NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+# - CLERK_SECRET_KEY
+# - OPENAI_API_KEY
+
+# Run dashboard locally
+cd apps/dashboard
 bun dev
+
+# Open http://localhost:3000
 ```
 
-## Tech Stack
+### Create Your First Entity with AI
 
-- Next.js 16 (App Router, RSC, Server Actions)
-- TypeScript
-- Tailwind CSS + shadcn/ui
-- Neon Postgres
-- Upstash Redis
-- Vercel
-- Clerk
+1. Navigate to **AI Generator** in sidebar
+2. Enter: _"Create a customers module with name, email, phone, and company"_
+3. Click **Generate with AI**
+4. Review the generated entity
+5. Click **Create Entity**
+6. Start adding customers immediately!
 
-## Key Features
+## 📚 Documentation
 
-### Phase 1 (Current) ✅
-- [x] Entity definition & management
-- [x] Dynamic Postgres table generation
-- [x] REST API endpoints (CRUD)
-- [x] Server Actions for Next.js
-- [x] Dashboard UI with entity builder
-- [x] API key authentication
-- [x] Tenant isolation
+See `docs/` for detailed documentation:
 
-### Phase 2 (Next)
-- [ ] Dynamic data CRUD operations
-- [ ] Entity relationships (foreign keys)
-- [ ] Data browser UI
-- [ ] SDK package (`@cot/sdk`)
-- [ ] Embeddable UI components
+- [Product Vision](docs/PRODUCT_VISION.md) - What we're building
+- [Architecture](docs/architecture.md) - Technical design
+- [Development Guide](docs/development.md) - How to contribute
+- [LLM Context](LLM.md) - AI assistant reference
 
-### Phase 3 (Future)
-- [ ] Cot Agent (AI-driven entity generation)
-- [ ] Workflow engine
-- [ ] Webhooks
-- [ ] Marketplace templates
+## 🔑 Key Features
 
-See [docs/ROADMAP.md](./docs/ROADMAP.md) for full timeline.
+### 1. **AI Entity Generation**
+Describe what you want in plain English:
+```
+"I need to track projects with title, description, status, and due date"
+```
+
+AI generates:
+```typescript
+{
+  name: "projects",
+  label: "Project",
+  fields: [
+    { name: "title", type: "text", required: true },
+    { name: "description", type: "textarea" },
+    { name: "status", type: "select", config: { options: [...] } },
+    { name: "due_date", type: "date", required: true }
+  ]
+}
+```
+
+### 2. **Dynamic Forms**
+Forms auto-generate based on entity definitions:
+- 10+ field types (text, email, number, date, select, etc.)
+- Built-in validation
+- Beautiful UI with react-hook-form
+
+### 3. **REST API**
+Every entity gets automatic API endpoints:
+```bash
+POST   /api/v1/data/customers       # Create
+GET    /api/v1/data/customers       # List (with pagination)
+GET    /api/v1/data/customers/:id   # Get one
+PATCH  /api/v1/data/customers/:id   # Update
+DELETE /api/v1/data/customers/:id   # Delete
+```
+
+All protected with API key authentication.
+
+### 4. **Type Safety**
+TypeScript types generated automatically:
+```typescript
+import { DataEngine } from "@cot/engine"
+
+const engine = new DataEngine()
+const customers = await engine.findMany(tenantId, customerEntity)
+// customers is fully typed based on entity definition
+```
+
+## 🎨 UI/UX
+
+Built with modern design principles:
+- Vercel-inspired aesthetic
+- Dark mode support
+- Responsive (desktop + mobile)
+- shadcn/ui components
+- Tailwind CSS v4
+
+## 🔐 Multi-Tenancy
+
+Built-in tenant isolation:
+- Every entity scoped to tenant
+- Clerk organization mapping
+- Data isolation at database level
+- API keys per tenant
+
+## 📈 Performance
+
+- **Serverless:** Neon Postgres, Vercel deployment
+- **Edge-ready:** Next.js 16 with Turbopack
+- **Type-safe:** End-to-end TypeScript
+- **Fast builds:** Turborepo caching
+
+## 🛣️ Roadmap
+
+### Q1 2025
+- ✅ Core CRUD operations
+- ✅ AI entity generation
+- 🚧 Demo app
+- 🚧 Entity relationships
+
+### Q2 2025
+- Module marketplace
+- Webhooks & triggers
+- Custom workflows
+- Advanced permissions
+
+### Q3 2025
+- GraphQL API
+- Real-time subscriptions
+- Mobile SDK
+- Self-hosting options
+
+## 🤝 Contributing
+
+We welcome contributions! See [DEVELOPMENT.md](docs/development.md) for guidelines.
+
+## 📝 License
+
+MIT License - see [LICENSE](LICENSE) for details.
+
+## 🔗 Links
+
+- **Website:** [cot.industries](https://cot.industries)
+- **Dashboard:** [cot.dev](https://cot.dev)
+- **Marketplace:** [cot.land](https://cot.land)
+- **Demo:** [cot.ac](https://cot.ac)
 
 ---
 
-## Documentation
+**Built with ❤️ by [Cot Industries](https://cot.industries)**
 
-### For Contributors
-- **[Getting Started](./docs/GETTING_STARTED.md)** - Set up dev environment
-- **[Development Guide](./docs/DEVELOPMENT.md)** - Workflow and commands
-- **[Architecture](./docs/ARCHITECTURE.md)** - Technical design
-- **[MVP Plan](./docs/MVP_PLAN.md)** - Current phase
-
-### For Users (Coming Soon)
-- **[Quickstart](./content/quickstart.md)** - First entity in 5 minutes
-- **[Core Concepts](./content/core-concepts/)** - How Cot works
-- **[API Reference](./content/api-reference/)** - Complete API docs
-
-**🤖 AI Agents/Developers:** Read [`LLM.md`](./LLM.md) first for rapid onboarding.
-
-**📍 Product Vision:** See [docs/PRODUCT_VISION.md](./docs/PRODUCT_VISION.md) and [docs/AGENT_VISION.md](./docs/AGENT_VISION.md)
-
-## License
-
-This project is licensed under the Business Source License 1.1. See [LICENSE](LICENSE) for details.
-
-**TL;DR:**
-- ✅ Free to use, modify, and self-host
-- ✅ Free for internal business use
-- ❌ Cannot offer as a hosted service to third parties
-- 🔄 Converts to Apache 2.0 on 2029-01-01
-
-For commercial hosting licenses, contact: hello@cot.dev
+*Making custom ERP development accessible to everyone.*
