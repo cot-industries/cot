@@ -53,6 +53,28 @@
         "typescript": "latest",
       },
     },
+    "apps/demo": {
+      "name": "@cot/demo",
+      "version": "0.1.0",
+      "dependencies": {
+        "@cot/ui": "workspace:*",
+        "lucide-react": "latest",
+        "next": "canary",
+        "next-themes": "latest",
+        "react": "rc",
+        "react-dom": "rc",
+      },
+      "devDependencies": {
+        "@tailwindcss/postcss": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "autoprefixer": "latest",
+        "postcss": "latest",
+        "tailwindcss": "latest",
+        "typescript": "latest",
+      },
+    },
     "apps/marketplace": {
       "name": "@cot/marketplace",
       "version": "0.1.0",
@@ -151,6 +173,7 @@
         "@radix-ui/react-select": "latest",
         "@radix-ui/react-separator": "latest",
         "@radix-ui/react-slot": "latest",
+        "@radix-ui/react-toggle": "^1.1.10",
         "@radix-ui/react-tooltip": "latest",
         "class-variance-authority": "latest",
         "clsx": "latest",
@@ -206,6 +229,8 @@
     "@cot/dashboard": ["@cot/dashboard@workspace:apps/dashboard"],
 
     "@cot/db": ["@cot/db@workspace:packages/db"],
+
+    "@cot/demo": ["@cot/demo@workspace:apps/demo"],
 
     "@cot/engine": ["@cot/engine@workspace:packages/engine"],
 
