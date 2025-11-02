@@ -22,9 +22,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
-  useSidebar,
 } from "@/components/ui/sidebar"
-import { Button } from "@/components/ui/button"
 
 const data = {
   navMain: [
@@ -61,7 +59,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">Cot</span>
-                  <span className="truncate text-xs">v1.0.0</span>
+                  <span className="truncate text-xs">Enterprise</span>
                 </div>
               </Link>
             </SidebarMenuButton>
@@ -88,11 +86,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        <div className="p-1">
-          <div className="text-xs text-sidebar-foreground/50">
-            ? 2025 Cot Industries
-          </div>
-        </div>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild size="sm">
+              <a href="https://ui.shadcn.com/docs" target="_blank" rel="noreferrer">
+                <span>Documentation</span>
+                <ChevronRight className="ml-auto" />
+              </a>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
