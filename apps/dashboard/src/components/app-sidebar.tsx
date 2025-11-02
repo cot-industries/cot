@@ -23,11 +23,11 @@ const navigationItems = [
   { title: "Settings", url: "/settings", icon: Settings },
 ]
 
-export function AppSidebar() {
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname()
 
   return (
-    <Sidebar>
+    <Sidebar {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>

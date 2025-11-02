@@ -6,8 +6,8 @@ export const dynamic = "force-dynamic";
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
-    <SidebarProvider defaultOpen={true}>
-      <AppSidebar />
+    <SidebarProvider>
+      <AppSidebar collapsible="icon" />
       <SidebarInset>
         {/* Top navbar */}
         <TopNavbar />
