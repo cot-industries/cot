@@ -1,18 +1,23 @@
-import { Header } from "@/components/header";
-import { Sidebar } from "@/components/sidebar";
+import { SidebarNav } from "@/components/sidebar-nav";
+import { TopNavbar } from "@/components/top-navbar";
 
 export const dynamic = "force-dynamic";
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
-  // Auth is handled by clerkMiddleware in proxy.ts
-  // Unauthenticated users are automatically redirected to Clerk Account Portal
-  
   return (
-    <div className="flex h-screen">
-      <Sidebar />
-      <div className="flex flex-1 flex-col">
-        <Header />
-        <main className="flex-1 overflow-auto p-6">{children}</main>
+    <div className="flex h-screen overflow-hidden">
+      {/* Sidebar */}
+      <SidebarNav />
+      
+      {/* Main content area */}
+      <div className="flex flex-1 flex-col overflow-hidden">
+        {/* Top navbar */}
+        <TopNavbar />
+        
+        {/* Page content */}
+        <main className="flex-1 overflow-y-auto bg-muted/10 p-6">
+          {children}
+        </main>
       </div>
     </div>
   );

@@ -20,6 +20,9 @@
     "@biomejs/biome": "latest",
     "@tailwindcss/postcss": "^4.1.16",
     "@turbo/gen": "latest",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.16",
     "turbo": "latest"
   },
   "packageManager": "bun@1.2.23",
