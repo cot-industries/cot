@@ -45,18 +45,78 @@ API-first platform for building custom ERPs. Developers define entities (like "C
 
 ## Tech Stack
 
-- **Bun** - Package manager, runtime (latest)
+- **Bun v1.3.1** - Package manager, runtime
 - **Turborepo** - Monorepo builds (latest)
 - **Next.js 16 canary** - Dashboard with **Turbopack enabled** (700x faster builds)
 - **React 19 RC** - Latest with compiler
 - **Drizzle ORM** - Database (type-safe SQL)
 - **Neon Postgres** - Serverless database
-- **Clerk** - Authentication
+- **Clerk** - Authentication (Account Portal mode)
 - **Zod** - Runtime validation
 - **Biome latest** - Linting & formatting (replaces ESLint + Prettier)
-- **Tailwind + shadcn/ui** - Styling (components in `src/components/ui/`)
+- **Tailwind CSS v4** - Bleeding-edge CSS-first configuration
+- **shadcn/ui** - UI components (using v4 syntax from their monorepo)
+- **lucide-react** - Icon library
+- **next-themes** - Dark mode support
 
 **All packages:** Using `latest`, `canary`, or `rc` tags (bleeding-edge)
+
+---
+
+## shadcn/ui v4 + Tailwind v4 (CRITICAL)
+
+**We use Tailwind CSS v4 with shadcn components.** The shadcn CLI installs v3 syntax components by default. **Always convert CSS variable syntax:**
+
+```tsx
+// ❌ WRONG (Tailwind v3 - doesn't work with v4)
+className="w-[--sidebar-width] h-[--header-height]"
+
+// ✅ CORRECT (Tailwind v4 syntax)
+className="w-(--sidebar-width) h-(--header-height)"
+```
+
+**CSS Variable Patterns:**
+- Width: `w-(--var-name)`
+- Height: `h-(--var-name)`
+- Background: `bg-(--var-name)`
+- Max width: `max-w-(--var-name)`
+- In calc(): `w-[calc(var(--var-name)+(--spacing(4)))]`
+
+**Getting v4 Components:**
+
+Reference cloned shadcn repo at `/tmp/shadcn-ui/apps/v4/registry/new-york-v4/`:
+- **UI components:** `/ui/sidebar.tsx`, `/ui/button.tsx`, etc.
+- **Blocks (full examples):** `/blocks/dashboard-01/`, `/blocks/sidebar-07/`, etc.
+- **After `bunx shadcn add <component>`:** Manually convert all `[--var]` → `(--var)`
+
+**Sidebar Implementation Pattern:**
+```tsx
+<SidebarProvider>
+  <AppSidebar collapsible="icon" />
+  <SidebarInset>
+    <header>
+      <SidebarTrigger /> {/* Hamburger for mobile */}
+      {/* Navbar content */}
+    </header>
+    <main>{children}</main>
+  </SidebarInset>
+</SidebarProvider>
+```
+
+- `collapsible="icon"` - Desktop: collapses to icons (not hidden)
+- `collapsible="offcanvas"` - Mobile: overlay sheet
+- `<SidebarRail />` - Adds toggle button to sidebar edge
+- `<SidebarInset>` - Main content container (pushes content, doesn't overlay)
+
+**Component Structure:**
+```
+apps/dashboard/src/components/
+├── ui/                  # shadcn components (check for v3 syntax!)
+├── app-sidebar.tsx      # Navigation sidebar
+├── top-navbar.tsx       # Header content (workspace selector, user menu)
+├── theme-toggle.tsx     # Dark/light mode switcher
+└── theme-provider.tsx   # next-themes wrapper
+```
 
 ---
 
