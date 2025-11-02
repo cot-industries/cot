@@ -7,6 +7,7 @@ import {
   LayoutDashboard,
   Box,
   Settings,
+  ChevronRight,
 } from "lucide-react"
 
 import {
@@ -21,7 +22,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
+  useSidebar,
 } from "@/components/ui/sidebar"
+import { Button } from "@/components/ui/button"
 
 const data = {
   navMain: [
